@@ -1,4 +1,5 @@
 import os
+import wolframalpha
 from langchain.agents import Tool, initialize_agent
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_openai import ChatOpenAI
@@ -52,6 +53,20 @@ def wikipedia_cz_tool(query: str) -> str:
         return result
     except Exception as e:
         return f"Nepodařilo se najít odpověď na Wikipedii: {e}"
+    
+
+# Inicializace Wolfram Alpha klienta
+wolfram_client = wolframalpha.Client(os.getenv("WOLFRAM_API_KEY"))
+
+def wolfram_tool(input: str) -> str:
+    try:
+        res = wolfram_client.query(input)
+        # vyber první odpověď (pokud existuje)
+        answer = next(res.results).text
+        return answer
+    except Exception as e:
+        return f"Chyba při dotazu na Wolfram Alpha: {e}"
+    
 
 # Definice nástrojů
 calculator = Tool(
@@ -69,8 +84,14 @@ weather = Tool(
     func=get_weather,
     description="Použij pouze při dotazu na aktuální počasí ve městě."
 )
+wolfram_tool_def = Tool(
+    name="Wolfram Alpha",
+    func=wolfram_tool,
+    description="Použij pro přesné výpočty, znalosti a fakta z oblasti matematiky, fyziky, chemie a dalších vědních oborů."
+)
 
-tools = [calculator, wikipedia, weather]
+
+tools = [calculator, wikipedia, weather, wolfram_tool_def]
 
 # Inicializace modelu
 llm = ChatOpenAI(model="gpt-4o", max_tokens=500)
