@@ -1,0 +1,25 @@
+# Python cache a bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtuální prostředí
+.venv/
+env/
+venv/
+
+# Soubory prostředí
+.env
+
+# VS Code nastavení
+.vscode/
+
+# Logy a výstupy
+*.log
+*.out
+*.tmp
+
+# OS specifické soubory
+.DS_Store
+Thumbs.db
+
