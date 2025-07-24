@@ -1,6 +1,6 @@
-# 🧠 AI Agent s LangChain a nástroji (ReAct)
+# 🧠 AI Agent s LangChain, nástroji (ReAct), s Wolfram Tool
 
-Tento projekt obsahuje jednoduchého AI agenta postaveného na frameworku **LangChain**, který komunikuje přes OpenAI LLM (model `gpt-4o`). Agent používá nástroje (tooly) pro vyhledávání na české Wikipedii, jednoduchou kalkulačku a aktuální počasí přes Open-Meteo API.
+Tento projekt je vypracovaný jako úkol do kurzu AI Agentů. Tento projekt obsahuje jednoduchého AI agenta postaveného na frameworku **LangChain**, který komunikuje přes OpenAI LLM (model `gpt-4o`). Agent používá nástroje (tooly) pro vyhledávání na české Wikipedii, jednoduchou kalkulačku a aktuální počasí přes Open-Meteo API a Wolfram Alpha pro pokročilé výpočty a vědecké dotazy.
 
 ## 🎯 Cíl projektu
 
@@ -19,6 +19,7 @@ Agent v tomto projektu umí:
 - 📐 **Kalkulačka**: Vyhodnotí matematické výrazy.
 - 🌐 **Česká Wikipedia**: Vyhledá informace přes českou Wikipedii.
 - 🌦 **Počasí**: Získá aktuální počasí ve zvoleném městě přes Open-Meteo API.
+- 🔬 **Wolfram Alpha**: Používá Wolfram Alpha API pro přesné výpočty, fakta a vědecké informace z oblastí matematiky, fyziky, chemie a dalších vědních oborů.
 
 Navíc využívá:
 
@@ -33,7 +34,7 @@ LANGTEST_AGENT/
 ├── .env                 # konfigurační proměnné (Tady se schovávají citlivé údaje jako OPENAI_API_KEY, .gitignore by měl tento soubor ignorovat)
 ├── main.py              # hlavní soubor se skriptem agenta (sem budeš psát celý kód agenta)
 ├── pip-freeze.txt       # přesné verze všech knihoven s verzemi, které jsem měla nainstalované
-├── requirements.txt     # hlavní knihovny potřebné k běhu projektu (např. langchain, openai, python-dotenv)
+├── requirements.txt     # hlavní knihovny potřebné k běhu projektu (např. langchain, openai, python-dotenv, wolframalpha)
 └── README.md            # popis projektu
 
 
@@ -42,6 +43,7 @@ LANGTEST_AGENT/
 - Python 3.8 nebo novější
 - Virtuální prostředí s nainstalovanými balíčky ze souboru `requirements.txt`
 - OpenAI API klíč uložený v souboru `.env` ve tvaru: OPENAI_API_KEY=tvuj_openai_klic  API klíč lze získat i na [OpenAI](https://platform.openai.com/)
+- Wolfram API klíč uložený v souboru `.env` ve tvaru: WOLFRAM_API_KEY=tvuj_wolfram_klic  API klíč lze získat na https://developer.wolframalpha.com/portal/myapps/
 
 
 ## ⚙️ Instalace
@@ -82,6 +84,10 @@ Zadej otázku nebo požadavek, například:
 "Jaké je počasí v Praze?"
 
 "Kdo je prezident České republiky?"
+
+"Jaká je rychlost světla?"
+
+"Kolik je druhá odmocnina z 144?"
 
 Agent zpracuje dotaz, rozhodne, zda použije nástroj, a odpoví.
 
